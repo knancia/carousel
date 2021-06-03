@@ -1,10 +1,14 @@
 var i = 0;
 const srcImg = [
-    'assets/images/slide/img_6.png',
-    'assets/images/slide/img_7.png',
-    'assets/images/slide/img_8.png',
-    'assets/images/slide/img_9.png',
-    'assets/images/slide/img_10.png' 
+    'assets/images/slide/img_1.jpg',
+    'assets/images/slide/img_2.jpg',
+    'assets/images/slide/img_4.jpg',
+    'assets/images/slide/img_5.jpg', 
+    'assets/images/slide/img_6.jpg',
+    'assets/images/slide/img_7.jpg',
+    'assets/images/slide/img_8.jpg',
+    'assets/images/slide/img_9.jpg',
+    'assets/images/slide/img_10.jpg' 
 ]
 
 const itemImg = document.getElementById("container_img")
@@ -35,27 +39,27 @@ prevSlide.onclick = () => {
         img.src = srcImg[i]
         img.classList.remove("removeSlide_prev")
         fakeImg.remove()
-    }, 900  )
+    }, 500  )
 }
 
 nextSlide.onclick = () => {
     if( i == (srcImg.length - 1) )
         i = -1
 
-        document.getElementById("imgSlide").classList.add("removeSlide_next")
+    document.getElementById("imgSlide").classList.add("removeSlide_next")
 
-        img.src = srcImg[ i == -1 ? (srcImg.length - 1) : i]
-        
-        i++
+    img.src = srcImg[ i == -1 ? (srcImg.length - 1) : i ]
     
-        const fakeImg = document.createElement("img")
-        fakeImg.id = "fakeImg_next"
-        fakeImg.src = srcImg[i]
-        itemImg.append(fakeImg)
-    
-        setTimeout(() => {
-            img.src = srcImg[i]
-            img.classList.remove("removeSlide_next")
-            fakeImg.remove()
-        }, 900  )
+    i++
+
+    const fakeImg = document.createElement("img")
+    fakeImg.id = "fakeImg_next"
+    fakeImg.src = srcImg[i]
+    itemImg.append(fakeImg)
+
+    setTimeout(() => {
+        img.src = srcImg[i]
+        img.classList.remove("removeSlide_next")
+        fakeImg.remove()
+    }, 500  )
 }

@@ -21,7 +21,7 @@ body {
 #container_carousel #container_img {
     display: flex;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -41,8 +41,8 @@ body {
     top: 0;
     left: -100%;
     animation-name: slidePrev;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation-duration: .55s;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @keyframes slidePrev {
@@ -55,8 +55,8 @@ body {
     top: 0;
     left: 0;
     animation-name: removeSlide_prev;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation-duration: .55s;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @keyframes removeSlide_prev {
@@ -70,8 +70,8 @@ body {
     top: 0;
     left: 100%;
     animation-name: slidenext;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation-duration: .55s;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @keyframes slidenext {
@@ -84,8 +84,8 @@ body {
     top: 0;
     left: 0;
     animation-name: removeSlide_next;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation-duration: .55s;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @keyframes removeSlide_next {
