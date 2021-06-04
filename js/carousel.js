@@ -1,4 +1,7 @@
 var i = 0;
+
+// -------------------------------
+
 const srcImg = [
     'assets/images/slide/img_1.jpg',
     'assets/images/slide/img_2.jpg',
@@ -11,14 +14,32 @@ const srcImg = [
     'assets/images/slide/img_10.jpg' 
 ]
 
+// -------------------------------
+
 const itemImg = document.getElementById("container_img")
 const img = document.createElement("img")
 img.id = "imgSlide"
 img.src = srcImg[i]
 itemImg.appendChild(img)
 
+// -------------------------------
+
 const prevSlide = document.getElementById("btn_carousel_left")
 const nextSlide = document.getElementById("btn_carousel_right")
+
+// -------------------------------
+
+const dotSlide = document.getElementById("dotSlide")
+
+for(let j = 0; j < srcImg.length; j++) {
+
+    let divDotSlide = document.createElement("div")
+    divDotSlide.id = j
+    dotSlide.appendChild(divDotSlide)
+
+}
+
+// -------------------------------
 
 prevSlide.onclick = () => {
     if( i == 0 )
@@ -41,6 +62,8 @@ prevSlide.onclick = () => {
         fakeImg.remove()
     }, 500  )
 }
+
+// -------------------------------
 
 nextSlide.onclick = () => {
     if( i == (srcImg.length - 1) )

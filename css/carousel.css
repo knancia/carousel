@@ -93,22 +93,7 @@ body {
     to { left: -100%; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* ============================== */
-
-
-
-
 
 #container_carousel .btn_carousel {
     position: absolute;
@@ -116,11 +101,13 @@ body {
     bottom: 0;
     margin: auto;
     width: 50px;
-    height: 50px;
+    height: 70px;
     font-size: 40px;
     display: flex;
-    background-color: #00000030;
-    border-radius: 100%;
+    background-color: #00000099;
+    color: white;
+    border: 2px solid black;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -138,7 +125,38 @@ body {
 }
 
 #container_carousel .btn_carousel:hover {
-    transform: scale(1.1);
-    background-color: #00000050;
+    background-color: #ffffff99;
+    color: black;
+    border: 2px solid #ffffff;
+    font-size: 60px;
     transition: .5s;
+}
+
+/* ============================== */
+
+#container_carousel #container_img #dotSlide {
+    width: 90%;
+    max-width: 500px;
+    height: 100px;
+    background-color: #00000010;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+#container_carousel #container_img #dotSlide div {
+    width: 30px;
+    height: 10px;
+    background-color: #00000080;
+    border: 2px solid black;
+    margin: 10px;
+    border-radius: 5px;
 }
