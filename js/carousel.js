@@ -8,11 +8,6 @@ const srcImg = [
     'assets/images/slide/img_3.png',
     'assets/images/slide/img_4.png',
     'assets/images/slide/img_5.png', 
-    // 'assets/images/slide/img_6.png',
-    // 'assets/images/slide/img_7.jpg',
-    // 'assets/images/slide/img_8.jpg',
-    // 'assets/images/slide/img_9.jpg',
-    // 'assets/images/slide/img_10.jpg' 
 ]
 
 // - - - - - Responsável por inserir as imagens no código HTML
@@ -57,6 +52,7 @@ removeAnimate_dotSlide = () => {
     document.querySelector("#dotSlide > span").remove()   
 }
 
+// - - - - - Função que mostra a posição e quantidades de slides
 positionCounter = () => {
     document.getElementById("positionCounter").innerHTML = `${ parseInt(i) + parseInt(1) } / ${srcImg.length}`
 }
