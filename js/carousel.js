@@ -1,7 +1,7 @@
-var i = 0;
+// - - - - - Definição da variável que controlará as imagens 
+let i = 0;
 
-// -------------------------------
-
+// - - - - - Aqui é inserido as url's das imagens
 const srcImg = [
     'assets/images/slide/img_1.jpg',
     'assets/images/slide/img_2.jpg',
@@ -14,34 +14,59 @@ const srcImg = [
     'assets/images/slide/img_10.jpg' 
 ]
 
-// -------------------------------
-
+// - - - - - Responsável por inserir as imagens no código HTML
 const itemImg = document.getElementById("container_img")
 const img = document.createElement("img")
 img.id = "imgSlide"
 img.src = srcImg[i]
 itemImg.appendChild(img)
 
-// -------------------------------
+// - - - - - Atribui ação aos elementos que compõem o Carousel
+const btn_prevSlide = document.getElementById("btn_carousel_left")
+const btn_nextSlide = document.getElementById("btn_carousel_right")
+const btn_dotSlide = document.getElementById("dotSlide")
 
-const prevSlide = document.getElementById("btn_carousel_left")
-const nextSlide = document.getElementById("btn_carousel_right")
+btn_prevSlide.onclick = () => { prevSlide();  }
+btn_nextSlide.onclick = () => { nextSlide() }
+btn_dotSlide.onclick = (e) => { dotSlide(e) }
 
-// -------------------------------
-
-const dotSlide = document.getElementById("dotSlide")
+// - - - - - Gera os botões de ancora dos slides
+const cont_dotSlide = document.getElementById("dotSlide")
 
 for(let j = 0; j < srcImg.length; j++) {
-
     let divDotSlide = document.createElement("div")
     divDotSlide.id = j
-    dotSlide.appendChild(divDotSlide)
-
+    cont_dotSlide.appendChild(divDotSlide)
 }
 
-// -------------------------------
+// - - - - - Animação dos botões ancora
+animate_dotSlide = () => {
+    let currentDot = document.querySelectorAll("#dotSlide > div")[i]
+    currentDot.classList.add("btn_dotSlide")
 
-prevSlide.onclick = () => {
+    const timerChangeSlide = document.createElement("span")
+    cont_dotSlide.appendChild(timerChangeSlide)
+}
+
+animate_dotSlide()
+
+// - - - - - Função do botão ancora
+dotSlide = (e) => {
+    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
+    document.querySelector("#dotSlide > span").remove()
+    
+    i = e.target.id
+    img.src = srcImg[i]
+    
+    timer.reset(5000)
+    animate_dotSlide()
+}
+
+// - - - - - Função para voltar slide
+prevSlide = () => {
+    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
+    document.querySelector("#dotSlide > span").remove()
+
     if( i == 0 )
         i = (srcImg.length)
 
@@ -61,11 +86,16 @@ prevSlide.onclick = () => {
         img.classList.remove("removeSlide_prev")
         fakeImg.remove()
     }, 500  )
+
+    timer.reset(5000)
+    animate_dotSlide()
 }
 
-// -------------------------------
+// - - - - - Função para avançar slide
+nextSlide = () => {
+    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
+    document.querySelector("#dotSlide > span").remove()
 
-nextSlide.onclick = () => {
     if( i == (srcImg.length - 1) )
         i = -1
 
@@ -85,4 +115,40 @@ nextSlide.onclick = () => {
         img.classList.remove("removeSlide_next")
         fakeImg.remove()
     }, 500  )
+
+    timer.reset(5000)
+    animate_dotSlide()
 }
+
+// - - - - - Responsável por controlar o tempo de transição automatico e por resetar
+// a animação quando houver interação com os botões
+// https://stackoverflow.com/questions/8126466/how-do-i-reset-the-setinterval-timer
+function Timer(fn, t) {
+    var timerObj = setInterval(fn, t);
+
+    this.stop = () => {
+        if (timerObj) {
+            clearInterval(timerObj);
+            timerObj = null;
+        }
+        return this;
+    }
+
+    this.start = () => {
+        if (!timerObj) {
+            this.stop();
+            timerObj = setInterval(fn, t);
+        }
+        return this;
+    }
+
+    this.reset = (newT = t) => {
+        t = newT;
+        return this.stop().start();
+    }
+}
+
+// - - - - - Inicialização da transição automatica
+var timer = new Timer(() => {
+    nextSlide()
+}, 5000);

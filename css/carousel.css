@@ -72,6 +72,7 @@ body {
     animation-name: slidenext;
     animation-duration: .55s;
     animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    /* animation-timing-function: step-start; */
 }
 
 @keyframes slidenext {
@@ -86,6 +87,7 @@ body {
     animation-name: removeSlide_next;
     animation-duration: .55s;
     animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    /* animation-timing-function: step-start; */
 }
 
 @keyframes removeSlide_next {
@@ -135,10 +137,11 @@ body {
 /* ============================== */
 
 #container_carousel #container_img #dotSlide {
+    position: relative;
     width: 90%;
-    max-width: 500px;
-    height: 100px;
-    background-color: #00000010;
+    max-width: 600px;
+    padding: 10px 0;
+    background-color: #ffffff40;
     position: absolute;
     left: 0;
     right: 0;
@@ -149,14 +152,44 @@ body {
     align-content: center;
     justify-content: center;
     border-radius: 5px;
+    pointer-events: none;
     z-index: 1;
 }
 
-#container_carousel #container_img #dotSlide div {
-    width: 30px;
-    height: 10px;
+#container_carousel #container_img #dotSlide > span {
+    height: 3px;
+    width: 0%;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darkorange;
+    animation-name: animateDotSlide;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+}
+
+@keyframes animateDotSlide {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+#container_carousel #container_img #dotSlide > div {
+    width: 40px;
+    height: 5px;
     background-color: #00000080;
     border: 2px solid black;
     margin: 10px;
     border-radius: 5px;
+    box-sizing: content-box;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#container_carousel #container_img #dotSlide > div:hover {
+    border: 2px solid white;
+}
+
+#container_carousel #container_img #dotSlide > div.btn_dotSlide {
+    background-color: #ffffff;
 }
