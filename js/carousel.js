@@ -3,15 +3,16 @@ let i = 0;
 
 // - - - - - Aqui é inserido as url's das imagens
 const srcImg = [
-    'assets/images/slide/img_1.jpg',
-    'assets/images/slide/img_2.jpg',
-    'assets/images/slide/img_4.jpg',
-    'assets/images/slide/img_5.jpg', 
-    'assets/images/slide/img_6.jpg',
-    'assets/images/slide/img_7.jpg',
-    'assets/images/slide/img_8.jpg',
-    'assets/images/slide/img_9.jpg',
-    'assets/images/slide/img_10.jpg' 
+    'assets/images/slide/img_1.png',
+    'assets/images/slide/img_2.png',
+    'assets/images/slide/img_3.png',
+    'assets/images/slide/img_4.png',
+    'assets/images/slide/img_5.png', 
+    // 'assets/images/slide/img_6.png',
+    // 'assets/images/slide/img_7.jpg',
+    // 'assets/images/slide/img_8.jpg',
+    // 'assets/images/slide/img_9.jpg',
+    // 'assets/images/slide/img_10.jpg' 
 ]
 
 // - - - - - Responsável por inserir as imagens no código HTML
@@ -39,8 +40,8 @@ for(let j = 0; j < srcImg.length; j++) {
     cont_dotSlide.appendChild(divDotSlide)
 }
 
-// - - - - - Animação dos botões ancora
-animate_dotSlide = () => {
+// - - - - - Insere Animação dos botões ancora e da barra de tempo
+insertAnimate_dotSlide = () => {
     let currentDot = document.querySelectorAll("#dotSlide > div")[i]
     currentDot.classList.add("btn_dotSlide")
 
@@ -48,24 +49,35 @@ animate_dotSlide = () => {
     cont_dotSlide.appendChild(timerChangeSlide)
 }
 
-animate_dotSlide()
+insertAnimate_dotSlide()
+
+// - - - - - Remove Animação dos botões ancora e da barra de tempo
+removeAnimate_dotSlide = () => {
+    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
+    document.querySelector("#dotSlide > span").remove()   
+}
+
+positionCounter = () => {
+    document.getElementById("positionCounter").innerHTML = `${ parseInt(i) + parseInt(1) } / ${srcImg.length}`
+}
+
+positionCounter()
 
 // - - - - - Função do botão ancora
 dotSlide = (e) => {
-    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
-    document.querySelector("#dotSlide > span").remove()
-    
+    removeAnimate_dotSlide()
+
     i = e.target.id
     img.src = srcImg[i]
     
     timer.reset(5000)
-    animate_dotSlide()
+    positionCounter()
+    insertAnimate_dotSlide()
 }
 
 // - - - - - Função para voltar slide
 prevSlide = () => {
-    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
-    document.querySelector("#dotSlide > span").remove()
+    removeAnimate_dotSlide()
 
     if( i == 0 )
         i = (srcImg.length)
@@ -88,13 +100,13 @@ prevSlide = () => {
     }, 500  )
 
     timer.reset(5000)
-    animate_dotSlide()
+    positionCounter()
+    insertAnimate_dotSlide()
 }
 
 // - - - - - Função para avançar slide
 nextSlide = () => {
-    document.querySelector(".btn_dotSlide").classList.remove("btn_dotSlide")
-    document.querySelector("#dotSlide > span").remove()
+    removeAnimate_dotSlide()
 
     if( i == (srcImg.length - 1) )
         i = -1
@@ -117,7 +129,8 @@ nextSlide = () => {
     }, 500  )
 
     timer.reset(5000)
-    animate_dotSlide()
+    positionCounter()
+    insertAnimate_dotSlide()
 }
 
 // - - - - - Responsável por controlar o tempo de transição automatico e por resetar
